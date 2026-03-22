@@ -3,7 +3,14 @@ const cors = require('cors')
 const ncmApi = require('NeteaseCloudMusicApi')
 
 const app = express()
-app.use(cors({ origin: true, credentials: true }))
+const allowedOrigins = [
+  'https://marshalamar.github.io',
+  'http://localhost:5173',
+]
+app.use(cors({
+  origin: (origin, cb) => cb(null, !origin || allowedOrigins.includes(origin)),
+  credentials: true,
+}))
 
 // 将 NeteaseCloudMusicApi 的函数映射为 HTTP 路由
 // 函数名如 login_qr_key => 路由 /login/qr/key
