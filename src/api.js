@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_BASE || '/api'
+const BASE = '/api'
 
 function qs(params) {
   return new URLSearchParams(params).toString()

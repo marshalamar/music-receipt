@@ -1,31 +1,24 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 const ncmApi = require('NeteaseCloudMusicApi')
 
 const app = express()
-const allowedOrigins = [
-  'https://marshalamar.github.io',
-  'http://localhost:5173',
-]
-app.use(cors({
-  origin: (origin, cb) => cb(null, !origin || allowedOrigins.includes(origin)),
-  credentials: true,
-}))
+app.use(cors({ origin: true, credentials: true }))
 
-// 将 NeteaseCloudMusicApi 的函数映射为 HTTP 路由
-// 函数名如 login_qr_key => 路由 /login/qr/key
+// 将 NeteaseCloudMusicApi 的函数映射为 /api/* 路由
+const router = express.Router()
 Object.keys(ncmApi).forEach(key => {
   if (typeof ncmApi[key] !== 'function') return
   if (['default', 'serveNcmApi'].includes(key)) return
 
   const route = '/' + key.replace(/_/g, '/')
-  app.all(route, async (req, res) => {
+  router.all(route, async (req, res) => {
     try {
       const params = { ...req.query }
       if (req.query.cookie) params.cookie = req.query.cookie
       else if (req.headers.cookie) params.cookie = req.headers.cookie
       const result = await ncmApi[key](params)
-      // 透传 set-cookie
       if (result.cookie) {
         result.cookie.forEach(c => res.append('Set-Cookie', c))
       }
@@ -35,8 +28,15 @@ Object.keys(ncmApi).forEach(key => {
     }
   })
 })
+app.use('/api', router)
 
-const PORT = process.env.API_PORT || 3300
+// 生产环境 serve 前端静态文件
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'dist')))
+  app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')))
+}
+
+const PORT = process.env.PORT || 3300
 app.listen(PORT, () => {
-  console.log(`API server running at http://localhost:${PORT}`)
+  console.log(`Server running at http://localhost:${PORT}`)
 })

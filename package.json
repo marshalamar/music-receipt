@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "vite build",
     "server": "node server.js",
     "client": "vite",
     "dev": "concurrently \"npm run server\" \"npm run client\""
