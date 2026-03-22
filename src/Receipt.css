@@ -1,0 +1,138 @@
+.receipt {
+  width: 320px;
+  background: #fefef6;
+  color: #1a1a1a;
+  font-family: 'Courier New', 'Courier', monospace;
+  padding: 24px 20px;
+  border-radius: 2px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.receipt::before,
+.receipt::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(135deg, transparent 33.33%, #fefef6 33.33%, #fefef6 66.66%, transparent 66.66%),
+              linear-gradient(225deg, transparent 33.33%, #fefef6 33.33%, #fefef6 66.66%, transparent 66.66%);
+  background-size: 12px 8px;
+}
+
+.receipt::before { top: -8px; }
+.receipt::after { bottom: -8px; }
+
+.receipt-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.receipt-logo {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.receipt-sub {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.receipt-date {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.receipt-mode {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 4px;
+  letter-spacing: 2px;
+}
+
+.receipt-divider {
+  text-align: center;
+  color: #ccc;
+  font-size: 10px;
+  margin: 8px 0;
+  overflow: hidden;
+  letter-spacing: -1px;
+}
+
+.receipt-section {
+  margin: 4px 0;
+}
+
+.receipt-section-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.receipt-row .track-name {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.receipt-barcode {
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  margin: 8px 0 4px;
+  height: 40px;
+}
+
+.bar {
+  display: inline-block;
+  width: 2px;
+  height: 100%;
+  background: #1a1a1a;
+}
+
+.bar-0 { width: 1px; }
+.bar-1 { width: 2px; }
+.bar-2 { width: 3px; }
+.bar-3 { width: 2px; height: 80%; }
+.bar-4 { width: 3px; }
+.bar-5 { width: 1px; }
+.bar-6 { width: 4px; }
+.bar-7 { width: 2px; height: 90%; }
+.bar-8 { width: 3px; }
+.bar-9 { width: 1px; height: 85%; }
+
+.receipt-uid {
+  font-size: 10px;
+  color: #999;
+}
+
+.receipt-thanks {
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+.receipt-powered {
+  font-size: 9px;
+  color: #bbb;
+  margin-top: 4px;
+}

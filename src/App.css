@@ -1,0 +1,112 @@
+.app {
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 40px;
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.app-desc {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 24px;
+}
+
+.error {
+  background: #ff4444;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-section,
+.select-section,
+.loading,
+.result-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  border: 2px solid #333;
+}
+
+.qr-status {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.welcome {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  background: #1db954;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #1ed760;
+}
+
+.btn-secondary {
+  background: #333;
+}
+
+.btn-secondary:hover {
+  background: #444;
+}
+
+.loading {
+  margin-top: 40px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #333;
+  border-top-color: #1db954;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
