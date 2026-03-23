@@ -10,42 +10,22 @@
     0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* Torn edge top & bottom via clip-path */
-.receipt {
-  --tooth: 8px;
-  clip-path: polygon(
-    /* top zigzag */
-    0% var(--tooth),
-    2% 0%, 4% var(--tooth), 6% 0%, 8% var(--tooth), 10% 0%,
-    12% var(--tooth), 14% 0%, 16% var(--tooth), 18% 0%, 20% var(--tooth),
-    22% 0%, 24% var(--tooth), 26% 0%, 28% var(--tooth), 30% 0%,
-    32% var(--tooth), 34% 0%, 36% var(--tooth), 38% 0%, 40% var(--tooth),
-    42% 0%, 44% var(--tooth), 46% 0%, 48% var(--tooth), 50% 0%,
-    52% var(--tooth), 54% 0%, 56% var(--tooth), 58% 0%, 60% var(--tooth),
-    62% 0%, 64% var(--tooth), 66% 0%, 68% var(--tooth), 70% 0%,
-    72% var(--tooth), 74% 0%, 76% var(--tooth), 78% 0%, 80% var(--tooth),
-    82% 0%, 84% var(--tooth), 86% 0%, 88% var(--tooth), 90% 0%,
-    92% var(--tooth), 94% 0%, 96% var(--tooth), 98% 0%, 100% var(--tooth),
-    /* right side */
-    100% calc(100% - var(--tooth)),
-    /* bottom zigzag */
-    98% 100%, 96% calc(100% - var(--tooth)), 94% 100%, 92% calc(100% - var(--tooth)),
-    90% 100%, 88% calc(100% - var(--tooth)), 86% 100%, 84% calc(100% - var(--tooth)),
-    82% 100%, 80% calc(100% - var(--tooth)), 78% 100%, 76% calc(100% - var(--tooth)),
-    74% 100%, 72% calc(100% - var(--tooth)), 70% 100%, 68% calc(100% - var(--tooth)),
-    66% 100%, 64% calc(100% - var(--tooth)), 62% 100%, 60% calc(100% - var(--tooth)),
-    58% 100%, 56% calc(100% - var(--tooth)), 54% 100%, 52% calc(100% - var(--tooth)),
-    50% 100%, 48% calc(100% - var(--tooth)), 46% 100%, 44% calc(100% - var(--tooth)),
-    42% 100%, 40% calc(100% - var(--tooth)), 38% 100%, 36% calc(100% - var(--tooth)),
-    34% 100%, 32% calc(100% - var(--tooth)), 30% 100%, 28% calc(100% - var(--tooth)),
-    26% 100%, 24% calc(100% - var(--tooth)), 22% 100%, 20% calc(100% - var(--tooth)),
-    18% 100%, 16% calc(100% - var(--tooth)), 14% 100%, 12% calc(100% - var(--tooth)),
-    10% 100%, 8% calc(100% - var(--tooth)), 6% 100%, 4% calc(100% - var(--tooth)),
-    2% 100%, 0% calc(100% - var(--tooth))
-  );
-  padding-top: calc(var(--tooth) + 20px);
-  padding-bottom: calc(var(--tooth) + 20px);
+/* Torn edges via pseudo-elements with background zigzag */
+.receipt::before,
+.receipt::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background:
+    linear-gradient(135deg, transparent 33.33%, #fefef6 33.33%, #fefef6 66.66%, transparent 66.66%),
+    linear-gradient(225deg, transparent 33.33%, #fefef6 33.33%, #fefef6 66.66%, transparent 66.66%);
+  background-size: 12px 8px;
 }
+
+.receipt::before { top: -8px; }
+.receipt::after { bottom: -8px; }
 
 /* ── Header ───────────────────────────────────────── */
 
