@@ -207,8 +207,8 @@ export default function App() {
         // 分批并发，每批10个，避免请求过多
         const allSongs = processed.allSongIds
         const wikiResults = []
-        for (let i = 0; i < allSongs.length; i += 10) {
-          const batch = allSongs.slice(i, i + 10)
+        for (let i = 0; i < allSongs.length; i += 50) {
+          const batch = allSongs.slice(i, i + 50)
           const batchResults = await Promise.all(
             batch.map(s => getSongWiki(s.id, cookie).catch(() => null))
           )
