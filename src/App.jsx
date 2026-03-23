@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
-import { toPng } from 'html-to-image'
+import { toJpeg } from 'html-to-image'
 import Receipt from './Receipt'
 import { getQRKey, createQR, checkQR, getLoginStatus, getUserRecord, getUserDetail, getSongWiki, getListenReport } from './api'
 import './App.css'
@@ -303,9 +303,9 @@ export default function App() {
     const node = document.getElementById('receipt')
     if (!node) return
     try {
-      const dataUrl = await toPng(node, { pixelRatio: 3, backgroundColor: '#fefef6' })
+      const dataUrl = await toJpeg(node, { pixelRatio: 2, backgroundColor: '#fefef6', quality: 0.85 })
       const link = document.createElement('a')
-      link.download = `music-receipt-${mode}.png`
+      link.download = `music-receipt-${mode}.jpg`
       link.href = dataUrl
       link.click()
       setDownloadDone(true)
