@@ -1,5 +1,6 @@
 .receipt {
   width: 320px;
+  max-width: calc(100vw - 32px);
   background: #fefef6;
   color: #1a1a1a;
   font-family: 'IBM Plex Mono', 'Courier New', monospace;
