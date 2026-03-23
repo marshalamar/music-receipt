@@ -42,9 +42,9 @@ export default function Receipt({ data }) {
       <div className="receipt-section">
         <div className="receipt-section-title">TOP 5 TRACKS</div>
         {topTracks.map((t, i) => (
-          <div className="receipt-track" key={i}>
+          <div className={`receipt-track${i === 0 ? ' receipt-track-top' : ''}`} key={i}>
             <div className="receipt-row">
-              <span className="track-name">{i + 1}. {t.name}</span>
+              <span className="track-name">{i === 0 ? '★ ' : `${i + 1}. `}{t.name}</span>
               <span>x{t.count}</span>
             </div>
             {t.artists && <div className="track-artist">{t.artists}</div>}

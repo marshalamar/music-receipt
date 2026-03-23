@@ -54,6 +54,34 @@ function buildResult(trackMap, artistMap, totalSongs, totalDuration, days) {
   return { totalSongs, totalArtists, totalMinutes, avgPerDay, topTracks, topArtists, allSongIds, totalPlays: totalSongs }
 }
 
+const DEMO_DATA = {
+  totalSongs: 86,
+  totalArtists: 23,
+  totalMinutes: 841,
+  avgPerDay: 120,
+  topTracks: [
+    { name: 'Bohemian Rhapsody', artists: 'Queen', count: 18 },
+    { name: 'Blinding Lights', artists: 'The Weeknd', count: 14 },
+    { name: 'Stairway to Heaven', artists: 'Led Zeppelin', count: 11 },
+    { name: 'Watermelon Sugar', artists: 'Harry Styles', count: 9 },
+    { name: 'Levitating', artists: 'Dua Lipa', count: 7 },
+  ],
+  topArtists: [
+    { name: 'Queen', count: 32 },
+    { name: 'The Weeknd', count: 24 },
+    { name: 'Dua Lipa', count: 18 },
+  ],
+  genreMix: [
+    { name: '摇滚', percent: 38 },
+    { name: '流行', percent: 29 },
+    { name: '电子', percent: 19 },
+    { name: '其他', percent: 14 },
+  ],
+  userId: '2048673',
+  nickname: 'music_lover',
+  date: '2026/03/23 10:30',
+}
+
 export default function App() {
   const [step, setStep] = useState('login') // login | loading | result
   const [qrImg, setQrImg] = useState(null)
@@ -284,6 +312,23 @@ export default function App() {
     }
   }, [mode])
 
+  // 复制到剪贴板
+  const [copied, setCopied] = useState(false)
+  const copyToClipboard = useCallback(async () => {
+    const node = document.getElementById('receipt')
+    if (!node) return
+    try {
+      const dataUrl = await toPng(node, { pixelRatio: 3, backgroundColor: '#f5f0eb' })
+      const res = await fetch(dataUrl)
+      const blob = await res.blob()
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (e) {
+      setError('复制失败: ' + e.message)
+    }
+  }, [])
+
   return (
     <div className="app">
       <h1 className="app-title">Music Receipt</h1>
@@ -300,7 +345,15 @@ export default function App() {
               <button className="btn btn-secondary" onClick={startLogin}>刷新二维码</button>
             </div>
           ) : (
-            <button className="btn" onClick={startLogin}>扫码登录网易云音乐</button>
+            <>
+              <div className="demo-receipt-wrapper">
+                <Receipt data={DEMO_DATA} />
+                <div className="demo-overlay">
+                  <span>扫码登录，生成你的小票</span>
+                </div>
+              </div>
+              <button className="btn" onClick={startLogin} style={{ marginTop: 24 }}>扫码登录网易云音乐</button>
+            </>
           )}
         </div>
       )}
@@ -328,7 +381,8 @@ export default function App() {
             <Receipt data={receiptData} mode={mode} />
           </div>
           <div className="btn-group" style={{ marginTop: 20 }}>
-            <button className="btn" onClick={downloadImage}>📥 下载图片</button>
+            <button className="btn" onClick={downloadImage}>下载图片</button>
+            <button className="btn" onClick={copyToClipboard}>{copied ? '已复制 ✓' : '复制到剪贴板'}</button>
             <button className="btn btn-secondary" onClick={() => setStep('select')}>重新选择</button>
           </div>
         </div>
