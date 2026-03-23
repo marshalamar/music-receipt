@@ -274,7 +274,7 @@ export default function App() {
     const node = document.getElementById('receipt')
     if (!node) return
     try {
-      const dataUrl = await toPng(node, { pixelRatio: 3, backgroundColor: '#fefef6' })
+      const dataUrl = await toPng(node, { pixelRatio: 3, backgroundColor: '#f5f0eb' })
       const link = document.createElement('a')
       link.download = `music-receipt-${mode}.png`
       link.href = dataUrl
@@ -286,7 +286,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <h1 className="app-title">🎵 Music Receipt</h1>
+      <h1 className="app-title">Music Receipt</h1>
       <p className="app-desc">将你的网易云音乐听歌记录生成小票风格图片</p>
 
       {error && <div className="error">{error}</div>}
