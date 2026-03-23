@@ -312,22 +312,6 @@ export default function App() {
     }
   }, [mode])
 
-  // 复制到剪贴板
-  const [copied, setCopied] = useState(false)
-  const copyToClipboard = useCallback(async () => {
-    const node = document.getElementById('receipt')
-    if (!node) return
-    try {
-      const dataUrl = await toPng(node, { pixelRatio: 3, backgroundColor: '#f5f0eb' })
-      const res = await fetch(dataUrl)
-      const blob = await res.blob()
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (e) {
-      setError('复制失败: ' + e.message)
-    }
-  }, [])
 
   return (
     <div className="app">
@@ -382,7 +366,6 @@ export default function App() {
           </div>
           <div className="btn-group" style={{ marginTop: 20 }}>
             <button className="btn" onClick={downloadImage}>下载图片</button>
-            <button className="btn" onClick={copyToClipboard}>{copied ? '已复制 ✓' : '复制到剪贴板'}</button>
             <button className="btn btn-secondary" onClick={() => setStep('select')}>重新选择</button>
           </div>
         </div>
