@@ -31,7 +31,7 @@ export default function Receipt({ data }) {
     <div className="receipt" id="receipt" style={{ backgroundColor: '#fefef6', backgroundImage: `url(${noiseUrl})` }}>
       <div className="receipt-header">
         <div className="receipt-logo">♪ MUSIC RECEIPT ♪</div>
-        <div className="receipt-stars">✦ ✦ ✦</div>
+        <div className="receipt-stars">* * *</div>
         <div className="receipt-sub">{nickname}</div>
         <div className="receipt-date">{date}</div>
         <div className="receipt-mode">PAST 7 DAYS</div>
@@ -65,7 +65,7 @@ export default function Receipt({ data }) {
         {topTracks.map((t, i) => (
           <div className={`receipt-track${i === 0 ? ' receipt-track-top' : ''}`} key={i}>
             <div className="receipt-row">
-              <span className="track-name">{i === 0 ? '★ ' : `${i + 1}. `}{t.name}</span>
+              <span className="track-name">{i === 0 ? '* ' : `${i + 1}. `}{t.name}</span>
               <span>x{t.count}</span>
             </div>
             {t.artists && <div className="track-artist">{t.artists}</div>}
