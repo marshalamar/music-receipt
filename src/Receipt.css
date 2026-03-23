@@ -196,35 +196,13 @@
   margin-top: 8px;
 }
 
-/* ── Barcode ──────────────────────────────────────── */
+/* ── QR Code ──────────────────────────────────────── */
 
-.receipt-barcode {
+.receipt-qrcode {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  gap: 1.5px;
   margin: 10px auto 4px;
-  height: 44px;
-  max-width: 160px;
 }
-
-.bar {
-  display: inline-block;
-  width: 2px;
-  height: 100%;
-  background: #1a1a1a;
-}
-
-.bar-0 { width: 1px; }
-.bar-1 { width: 2px; }
-.bar-2 { width: 3px; }
-.bar-3 { width: 2px; height: 78%; }
-.bar-4 { width: 3px; }
-.bar-5 { width: 1px; }
-.bar-6 { width: 4px; }
-.bar-7 { width: 2px; height: 88%; }
-.bar-8 { width: 3px; }
-.bar-9 { width: 1px; height: 83%; }
 
 /* ── Footer Text ──────────────────────────────────── */
 

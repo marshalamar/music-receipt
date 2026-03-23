@@ -1,4 +1,5 @@
 import React from 'react'
+import { QRCodeSVG } from 'qrcode.react'
 import './Receipt.css'
 
 export default function Receipt({ data }) {
@@ -84,10 +85,14 @@ export default function Receipt({ data }) {
       <hr className="receipt-divider" />
 
       <div className="receipt-footer">
-        <div className="receipt-barcode">
-          {String(userId).split('').map((d, i) => (
-            <span key={i} className={`bar bar-${d}`} />
-          ))}
+        <div className="receipt-qrcode">
+          <QRCodeSVG
+            value={`https://music.163.com/user/home?id=${userId}`}
+            size={80}
+            bgColor="transparent"
+            fgColor="currentColor"
+            level="L"
+          />
         </div>
         <div className="receipt-uid">UID: {userId}</div>
         <div className="receipt-thanks">THANK YOU FOR LISTENING</div>
