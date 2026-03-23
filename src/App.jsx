@@ -298,6 +298,7 @@ export default function App() {
   }, [cookie, userInfo])
 
   // 下载图片
+  const [downloadDone, setDownloadDone] = useState(false)
   const downloadImage = useCallback(async () => {
     const node = document.getElementById('receipt')
     if (!node) return
@@ -307,6 +308,8 @@ export default function App() {
       link.download = `music-receipt-${mode}.png`
       link.href = dataUrl
       link.click()
+      setDownloadDone(true)
+      setTimeout(() => setDownloadDone(false), 1500)
     } catch (e) {
       setError('导出图片失败，可尝试截图保存。(' + e.message + ')')
     }
@@ -365,7 +368,7 @@ export default function App() {
             <Receipt data={receiptData} mode={mode} />
           </div>
           <div className="btn-group btn-group-result">
-            <button className="btn" onClick={downloadImage}>下载图片</button>
+            <button className="btn" onClick={downloadImage}>{downloadDone ? '已保存 ✓' : '下载图片'}</button>
             <button className="btn btn-secondary" onClick={() => setStep('select')}>重新选择</button>
           </div>
         </div>

@@ -58,7 +58,7 @@ export default function Receipt({ data }) {
       <div className="receipt-section">
         <div className="receipt-section-title">TOP 3 ARTISTS</div>
         {topArtists.map((a, i) => (
-          <div className="receipt-row" key={i}>
+          <div className="receipt-row receipt-artist-row" key={i}>
             <span>{i + 1}. {a.name}</span>
             <span>{a.count} plays</span>
           </div>

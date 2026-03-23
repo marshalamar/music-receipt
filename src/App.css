@@ -94,9 +94,9 @@
   background: var(--color-text);
   color: var(--color-bg);
   border: none;
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
@@ -167,8 +167,9 @@
   to { transform: rotate(360deg); }
 }
 
-@media (max-width: 374px) {
-  .receipt-wrapper {
+@media (max-width: 480px) {
+  .receipt-wrapper,
+  .demo-receipt-wrapper {
     transform: rotate(0deg);
   }
 }
@@ -189,7 +190,7 @@
 .demo-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 20%, rgba(245, 240, 235, 0.95) 70%);
+  background: linear-gradient(to bottom, transparent 55%, rgba(245, 240, 235, 0.97) 85%);
   display: flex;
   align-items: flex-end;
   justify-content: center;
