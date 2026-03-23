@@ -1,4 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap');
+:root {
+  /* Page */
+  --color-bg: #f5f0eb;
+  --color-text: #2a2a2a;
+  --color-text-secondary: #757575;
+  --color-text-hint: #787878;
+  --color-border: #ccc;
+  --color-border-light: #ddd;
+
+  /* Receipt surface */
+  --receipt-bg: #fefef6;
+  --receipt-text: #1a1a1a;
+  --receipt-text-secondary: #555;
+  --receipt-text-muted: #767676;
+  --receipt-text-faint: #9a9a9a;
+  --receipt-border: #ccc;
+  --receipt-bar-track: #e8e8e0;
+
+  /* Semantic */
+  --color-error: #c44;
+  --color-error-bg: #fff5f5;
+  --color-error-border: #e8c4c4;
+}
 
 * {
   margin: 0;
@@ -8,8 +30,8 @@
 
 body {
   font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  background: #f5f0eb;
-  color: #2a2a2a;
+  background: var(--color-bg);
+  color: var(--color-text);
   min-height: 100vh;
   display: flex;
   justify-content: center;

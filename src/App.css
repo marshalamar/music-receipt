@@ -13,21 +13,21 @@
   font-weight: 600;
   margin-bottom: 6px;
   letter-spacing: 0.5px;
-  color: #2a2a2a;
+  color: var(--color-text);
 }
 
 .app-desc {
   font-size: 12px;
-  color: #999;
+  color: var(--color-text-secondary);
   margin-bottom: 36px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 
 .error {
-  background: #fff5f5;
-  border: 1px solid #e8c4c4;
-  color: #c44;
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error);
   padding: 10px 16px;
   border-radius: 4px;
   font-size: 12px;
@@ -70,19 +70,19 @@
   width: 180px;
   height: 180px;
   border-radius: 4px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border-light);
 }
 
 .qr-status {
   font-size: 12px;
-  color: #999;
+  color: var(--color-text-secondary);
 }
 
 .welcome {
   font-size: 14px;
   margin-bottom: 20px;
   font-weight: 500;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
 .btn-group {
@@ -91,8 +91,8 @@
 }
 
 .btn {
-  background: #2a2a2a;
-  color: #f5f0eb;
+  background: var(--color-text);
+  color: var(--color-bg);
   border: none;
   padding: 12px 24px;
   border-radius: 4px;
@@ -113,10 +113,15 @@
   background: #1a1a1a;
 }
 
+.btn:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
 .btn-secondary {
   background: transparent;
-  color: #999;
-  border: 1px solid #ccc;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
@@ -125,20 +130,25 @@
   color: #666;
 }
 
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
 .loading {
   margin-top: 60px;
 }
 
 .loading p {
   font-size: 12px;
-  color: #999;
+  color: var(--color-text-secondary);
 }
 
 .spinner {
   width: 20px;
   height: 20px;
-  border: 1.5px solid #ddd;
-  border-top-color: #2a2a2a;
+  border: 1.5px solid var(--color-border-light);
+  border-top-color: var(--color-text);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 16px;
@@ -163,6 +173,14 @@
   }
 }
 
+.btn-login {
+  margin-top: 24px;
+}
+
+.btn-group-result {
+  margin-top: 20px;
+}
+
 .demo-receipt-wrapper {
   position: relative;
   transform: rotate(-1deg);
@@ -181,7 +199,7 @@
 .demo-overlay span {
   font-size: 13px;
   font-weight: 500;
-  color: #888;
+  color: var(--color-text-hint);
   letter-spacing: 0.5px;
 }
 

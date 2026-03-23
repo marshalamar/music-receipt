@@ -308,7 +308,7 @@ export default function App() {
       link.href = dataUrl
       link.click()
     } catch (e) {
-      setError('导出图片失败: ' + e.message)
+      setError('导出图片失败，可尝试截图保存。(' + e.message + ')')
     }
   }, [mode])
 
@@ -318,14 +318,14 @@ export default function App() {
       <h1 className="app-title">Music Receipt</h1>
       <p className="app-desc">将你的网易云音乐听歌记录生成小票风格图片</p>
 
-      {error && <div className="error">{error}</div>}
+      {error && <div className="error" role="alert">{error}</div>}
 
       {step === 'login' && (
         <div className="login-section">
           {qrImg ? (
             <div className="qr-container">
-              <img src={qrImg} alt="QR Code" className="qr-img" />
-              <p className="qr-status">{qrStatus}</p>
+              <img src={qrImg} alt="网易云音乐扫码登录二维码" className="qr-img" />
+              <p className="qr-status" aria-live="polite">{qrStatus}</p>
               <button className="btn btn-secondary" onClick={startLogin}>刷新二维码</button>
             </div>
           ) : (
@@ -336,7 +336,7 @@ export default function App() {
                   <span>扫码登录，生成你的小票</span>
                 </div>
               </div>
-              <button className="btn" onClick={startLogin} style={{ marginTop: 24 }}>扫码登录网易云音乐</button>
+              <button className="btn btn-login" onClick={startLogin}>扫码登录网易云音乐</button>
             </>
           )}
         </div>
@@ -353,8 +353,8 @@ export default function App() {
       )}
 
       {step === 'loading' && (
-        <div className="loading">
-          <div className="spinner" />
+        <div className="loading" role="status" aria-live="polite">
+          <div className="spinner" aria-hidden="true" />
           <p>正在生成你的 Music Receipt...</p>
         </div>
       )}
@@ -364,7 +364,7 @@ export default function App() {
           <div className="receipt-wrapper">
             <Receipt data={receiptData} mode={mode} />
           </div>
-          <div className="btn-group" style={{ marginTop: 20 }}>
+          <div className="btn-group btn-group-result">
             <button className="btn" onClick={downloadImage}>下载图片</button>
             <button className="btn btn-secondary" onClick={() => setStep('select')}>重新选择</button>
           </div>
