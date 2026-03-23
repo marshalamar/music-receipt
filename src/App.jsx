@@ -324,7 +324,9 @@ export default function App() {
 
       {step === 'result' && (
         <div className="result-section">
-          <Receipt data={receiptData} mode={mode} />
+          <div className="receipt-wrapper">
+            <Receipt data={receiptData} mode={mode} />
+          </div>
           <div className="btn-group" style={{ marginTop: 20 }}>
             <button className="btn" onClick={downloadImage}>📥 下载图片</button>
             <button className="btn btn-secondary" onClick={() => setStep('select')}>重新选择</button>

@@ -10,12 +10,13 @@ export default function Receipt({ data }) {
     <div className="receipt" id="receipt">
       <div className="receipt-header">
         <div className="receipt-logo">♪ MUSIC RECEIPT ♪</div>
+        <div className="receipt-stars">✦ ✦ ✦</div>
         <div className="receipt-sub">{nickname}</div>
         <div className="receipt-date">{date}</div>
         <div className="receipt-mode">PAST 7 DAYS</div>
       </div>
 
-      <div className="receipt-divider">{'─'.repeat(32)}</div>
+      <hr className="receipt-divider" />
 
       <div className="receipt-section">
         <div className="receipt-row">
@@ -36,19 +37,22 @@ export default function Receipt({ data }) {
         </div>
       </div>
 
-      <div className="receipt-divider">{'─'.repeat(32)}</div>
+      <hr className="receipt-divider" />
 
       <div className="receipt-section">
         <div className="receipt-section-title">TOP 5 TRACKS</div>
         {topTracks.map((t, i) => (
-          <div className="receipt-row" key={i}>
-            <span className="track-name">{i + 1}. {t.name}</span>
-            <span>x{t.count}</span>
+          <div className="receipt-track" key={i}>
+            <div className="receipt-row">
+              <span className="track-name">{i + 1}. {t.name}</span>
+              <span>x{t.count}</span>
+            </div>
+            {t.artists && <div className="track-artist">{t.artists}</div>}
           </div>
         ))}
       </div>
 
-      <div className="receipt-divider">{'─'.repeat(32)}</div>
+      <hr className="receipt-divider" />
 
       <div className="receipt-section">
         <div className="receipt-section-title">TOP 3 ARTISTS</div>
@@ -60,19 +64,24 @@ export default function Receipt({ data }) {
         ))}
       </div>
 
-      <div className="receipt-divider">{'─'.repeat(32)}</div>
+      <hr className="receipt-divider" />
 
       <div className="receipt-section">
         <div className="receipt-section-title">GENRE MIX</div>
         {genreMix.map((g, i) => (
-          <div className="receipt-row" key={i}>
-            <span>{g.name}</span>
-            <span>{g.percent}%</span>
+          <div className="genre-row" key={i}>
+            <span className="genre-name">{g.name}</span>
+            <div className="genre-right">
+              <div className="genre-bar-track">
+                <div className="genre-bar-fill" style={{ width: `${g.percent}%` }} />
+              </div>
+              <span className="genre-percent">{g.percent}%</span>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="receipt-divider">{'─'.repeat(32)}</div>
+      <hr className="receipt-divider" />
 
       <div className="receipt-footer">
         <div className="receipt-barcode">
