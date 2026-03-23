@@ -303,7 +303,7 @@ export default function App() {
     const node = document.getElementById('receipt')
     if (!node) return
     try {
-      const dataUrl = await toPng(node, { pixelRatio: 3, backgroundColor: '#f5f0eb' })
+      const dataUrl = await toPng(node, { pixelRatio: 3, backgroundColor: '#fefef6' })
       const link = document.createElement('a')
       link.download = `music-receipt-${mode}.png`
       link.href = dataUrl

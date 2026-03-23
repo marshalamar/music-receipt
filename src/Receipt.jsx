@@ -1,14 +1,34 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import './Receipt.css'
+
+function generateNoiseTexture() {
+  const size = 100
+  const canvas = document.createElement('canvas')
+  canvas.width = size
+  canvas.height = size
+  const ctx = canvas.getContext('2d')
+  const imageData = ctx.createImageData(size, size)
+  for (let i = 0; i < imageData.data.length; i += 4) {
+    const v = Math.random() * 255
+    imageData.data[i] = v
+    imageData.data[i + 1] = v
+    imageData.data[i + 2] = v
+    imageData.data[i + 3] = 10 // ~0.04 opacity
+  }
+  ctx.putImageData(imageData, 0, 0)
+  return canvas.toDataURL('image/png')
+}
 
 export default function Receipt({ data }) {
   if (!data) return null
 
+  const noiseUrl = useMemo(() => generateNoiseTexture(), [])
+
   const { totalSongs, totalArtists, totalMinutes, avgPerDay, topTracks, topArtists, genreMix, userId, nickname, date } = data
 
   return (
-    <div className="receipt" id="receipt">
+    <div className="receipt" id="receipt" style={{ backgroundColor: '#fefef6', backgroundImage: `url(${noiseUrl})` }}>
       <div className="receipt-header">
         <div className="receipt-logo">♪ MUSIC RECEIPT ♪</div>
         <div className="receipt-stars">✦ ✦ ✦</div>
@@ -90,7 +110,7 @@ export default function Receipt({ data }) {
             value={`https://music.163.com/user/home?id=${userId}`}
             size={80}
             bgColor="transparent"
-            fgColor="currentColor"
+            fgColor="#1a1a1a"
             level="L"
           />
         </div>
@@ -98,7 +118,7 @@ export default function Receipt({ data }) {
         <div className="receipt-thanks">THANK YOU FOR LISTENING</div>
         <div className="receipt-powered">
           <a href="https://github.com/marshalamar/music-receipt" target="_blank" rel="noopener noreferrer">
-            <svg className="github-icon" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+            <svg className="github-icon" viewBox="0 0 16 16" width="14" height="14" fill="#9a9a9a">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
             marshalamar/music-receipt
